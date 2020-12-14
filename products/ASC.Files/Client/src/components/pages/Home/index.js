@@ -38,11 +38,12 @@ import {
   getIsRecycleBinFolder,
   getDragging,
   getSharePanelVisible,
+  getDownloadPanelVisible,
   getFirstLoad,
 } from "../../../store/files/selectors";
 
 import { ConvertDialog } from "../../dialogs";
-import { SharingPanel } from "../../panels";
+import { SharingPanel, DownloadPanel } from "../../panels";
 import { createI18N } from "../../../helpers/i18n";
 import { getFilterByLocation } from "../../../helpers/converters";
 const i18n = createI18N({
@@ -176,6 +177,7 @@ class PureHome extends React.Component {
       viewAs,
       convertDialogVisible,
       sharingPanelVisible,
+      downloadPanelVisible,
       fileActionId,
       isRecycleBin,
       firstLoad,
@@ -188,6 +190,8 @@ class PureHome extends React.Component {
         )}
 
         {sharingPanelVisible && <SharingPanel />}
+        {downloadPanelVisible && <DownloadPanel />}
+
         <PageLayout
           withBodyScroll
           withBodyAutoFocus={!isMobile}
@@ -210,6 +214,7 @@ class PureHome extends React.Component {
             secondaryProgressData.visible
           }
           isLoaded={!firstLoad}
+          downloadPanelVisible={downloadPanelVisible}
         >
           <PageLayout.ArticleHeader>
             <ArticleHeaderContent />
@@ -280,6 +285,7 @@ function mapStateToProps(state) {
     dragging: getDragging(state),
     firstLoad: getFirstLoad(state),
     sharingPanelVisible: getSharePanelVisible(state),
+    downloadPanelVisible: getDownloadPanelVisible(state),
   };
 }
 
