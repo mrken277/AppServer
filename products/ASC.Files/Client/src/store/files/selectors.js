@@ -1182,3 +1182,7 @@ export const getIconOfDraggedFile = (state) => {
 export const getSharePanelVisible = (state) => {
   return state.files.sharingPanelVisible;
 };
+
+export const getDownloadPanelVisible = (state) => {
+  return state.files.downloadPanelVisible;
+};

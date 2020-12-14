@@ -58,6 +58,7 @@ export const SET_SECONDARY_PROGRESS_BAR_DATA =
 export const SET_VIEW_AS = "SET_VIEW_AS";
 export const SET_CONVERT_DIALOG_VISIBLE = "SET_CONVERT_DIALOG_VISIBLE";
 export const SET_SHARING_PANEL_VISIBLE = "SET_SHARING_PANEL_VISIBLE";
+export const SET_DOWNLOAD_PANEL_VISIBLE = "SET_DOWNLOAD_PANEL_VISIBLE";
 export const SET_UPDATE_TREE = "SET_UPDATE_TREE";
 export const SET_NEW_ROW_ITEMS = "SET_NEW_ROW_ITEMS";
 export const SET_SELECTED_NODE = "SET_SELECTED_NODE";
@@ -214,6 +215,13 @@ export function setSharingPanelVisible(sharingPanelVisible) {
   return {
     type: SET_SHARING_PANEL_VISIBLE,
     sharingPanelVisible,
+  };
+}
+
+export function setDownloadPanelVisible(downloadPanelVisible) {
+  return {
+    type: SET_DOWNLOAD_PANEL_VISIBLE,
+    downloadPanelVisible,
   };
 }
 
