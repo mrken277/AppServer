@@ -42,6 +42,11 @@ const StyledAsidePanel = styled.div`
     margin: 14px 0;
     padding-right: 10px;
   }
+  .download_panel-header {
+    font-weight: 700;
+    padding: 19px auto 19px 17px;
+  }
+
   .modal-dialog-aside {
     padding: 0;
     transform: translateX(${(props) => (props.visible ? "0" : "500px")});
@@ -143,7 +148,6 @@ const StyledHeaderContent = styled.div`
   .sharing_panel-icons-container {
     display: flex;
     margin-left: auto;
-
     .sharing_panel-drop-down-wrapper {
       position: relative;
 
@@ -153,6 +157,16 @@ const StyledHeaderContent = styled.div`
       .sharing_panel-plus-icon {
         //margin-right: 12px;
       }
+    }
+  }
+
+  .download_panel-icons-container {
+    display: flex;
+    margin-left: auto;
+    .download_panel-vertical-dots-icon {
+    }
+    .download_panel-remove-icon {
+      padding-right: 8px;
     }
   }
 
