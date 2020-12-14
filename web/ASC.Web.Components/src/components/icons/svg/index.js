@@ -208,6 +208,8 @@ import OrigButtonMoveIcon from "./button.move.react.svg";
 import OrigButtonDuplicateIcon from "./button.duplicate.react.svg";
 import OrigButtonAlertIcon from "./button.alert.react.svg";
 
+import OrigButtonCancelIcon from "./button.cancel.react.svg";
+
 export const AZSortingIcon = createStyledIcon(
   OrigAZSortingIcon,
   "AZSortingIcon"
@@ -304,6 +306,10 @@ export const CalendarCheckedIcon = createStyledIcon(
 export const CalendarEmptyIcon = createStyledIcon(
   OrigCalendarEmptyIcon,
   "CalendarEmptyIcon"
+);
+export const ButtonCancelIcon = createStyledIcon(
+  OrigButtonCancelIcon,
+  "ButtonCancelIcon"
 );
 export const CalendarIcon = createStyledIcon(OrigCalendarIcon, "CalendarIcon");
 export const CameraIcon = createStyledIcon(OrigCameraIcon, "CameraIcon");
