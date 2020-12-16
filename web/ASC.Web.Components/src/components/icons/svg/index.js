@@ -210,6 +210,7 @@ import OrigButtonAlertIcon from "./button.alert.react.svg";
 
 import OrigButtonCancelIcon from "./button.cancel.react.svg";
 import OrigLoadErrorIcon from "./load.error.react.svg";
+import OrigClearActiveIcon from "./clear.active.react.svg";
 
 export const AZSortingIcon = createStyledIcon(
   OrigAZSortingIcon,
@@ -389,6 +390,10 @@ export const CatalogUnpinIcon = createStyledIcon(
 export const CatalogUserIcon = createStyledIcon(
   OrigCatalogUserIcon,
   "CatalogUserIcon"
+);
+export const ClearActiveIcon = createStyledIcon(
+  OrigClearActiveIcon,
+  "ClearActiveIcon"
 );
 export const ChatIcon = createStyledIcon(OrigChatIcon, "ChatIcon");
 export const CheckIcon = createStyledIcon(OrigCheckIcon, "CheckIcon");
