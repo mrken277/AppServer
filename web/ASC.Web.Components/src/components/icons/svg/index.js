@@ -209,6 +209,7 @@ import OrigButtonDuplicateIcon from "./button.duplicate.react.svg";
 import OrigButtonAlertIcon from "./button.alert.react.svg";
 
 import OrigButtonCancelIcon from "./button.cancel.react.svg";
+import OrigLoadErrorIcon from "./load.error.react.svg";
 
 export const AZSortingIcon = createStyledIcon(
   OrigAZSortingIcon,
@@ -527,6 +528,10 @@ export const JabberIcon = createStyledIcon(OrigJabberIcon, "JabberIcon");
 export const LivejournalIcon = createStyledIcon(
   OrigLivejournalIcon,
   "LivejournalIcon"
+);
+export const LoadErrorIcon = createStyledIcon(
+  OrigLoadErrorIcon,
+  "LoadErrorIcon"
 );
 export const MailIcon = createStyledIcon(OrigMailIcon, "MailIcon");
 export const MainMenuFeedbackIcon = createStyledIcon(
