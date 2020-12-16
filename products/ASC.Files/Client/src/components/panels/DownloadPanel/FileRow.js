@@ -68,7 +68,14 @@ const checkExt = (ext) => {
 };
 
 const FileRow = (props) => {
-  const { item, index, archiveFormats, imageFormats, editedFormats } = props;
+  const {
+    item,
+    index,
+    archiveFormats,
+    imageFormats,
+    soundFormats,
+    editedFormats,
+  } = props;
   const name = item.file.name.split(".");
   let ext = name.length > 1 ? name.pop() : "";
   let originalExt = null;
@@ -81,6 +88,11 @@ const FileRow = (props) => {
   if (imageFormats.includes(`.${ext}`)) {
     originalExt = ext;
     ext = "image";
+  }
+
+  if (soundFormats.includes(`.${ext}`)) {
+    originalExt = ext;
+    ext = "sound";
   }
 
   const fileIcon = checkExt(ext) ? (
