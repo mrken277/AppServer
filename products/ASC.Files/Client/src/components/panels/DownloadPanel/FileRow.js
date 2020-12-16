@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { IconButton, Row, Text, Icons, DropDownItem } from "asc-web-components";
+import { IconButton, Row, Text, Icons, Tooltip } from "asc-web-components";
 
 const StyledFileRow = styled(Row)`
   margin: 0 16px;
@@ -34,6 +34,7 @@ const FileRow = (props) => {
   }
   const fileIcon = <img src={`images/icons/24/${ext}.svg`} />;
 
+  if (item.error) console.error(item.error);
   return (
     <StyledFileRow
       className="download-row"
@@ -46,15 +47,31 @@ const FileRow = (props) => {
         .{originalExt ? originalExt : ext}
       </Text>
 
-      {!item.fileId ? (
+      {item.fileId ? (
         <IconButton
-          iconName="ButtonCancelIcon"
+          iconName="CatalogSharedIcon"
           className="download_panel-icon"
           color="#A3A9AE"
         />
+      ) : item.error ? (
+        <div className="download_panel-icon">
+          {" "}
+          <Icons.ButtonAlertIcon
+            size="medium"
+            data-for="errorTooltip"
+            data-tip={item.error}
+          />
+          <Tooltip
+            id="errorTooltip"
+            getContent={(dataTip) => <Text fontSize="13px">{dataTip}</Text>}
+            effect="float"
+            place="left"
+            maxWidth={320}
+          />
+        </div>
       ) : (
         <IconButton
-          iconName="CatalogSharedIcon"
+          iconName="ButtonCancelIcon"
           className="download_panel-icon"
           color="#A3A9AE"
         />
