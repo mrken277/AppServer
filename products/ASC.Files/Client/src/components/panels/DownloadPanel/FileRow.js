@@ -42,40 +42,42 @@ const FileRow = (props) => {
       checkbox={false}
       element={fileIcon}
     >
-      <Text fontWeight="600">{name}</Text>
-      <Text fontWeight="600" color="#A3A9AE">
-        .{originalExt ? originalExt : ext}
-      </Text>
+      <>
+        <Text fontWeight="600">{name}</Text>
+        <Text fontWeight="600" color="#A3A9AE">
+          .{originalExt ? originalExt : ext}
+        </Text>
 
-      {item.fileId ? (
-        <IconButton
-          iconName="CatalogSharedIcon"
-          className="download_panel-icon"
-          color="#A3A9AE"
-        />
-      ) : item.error ? (
-        <div className="download_panel-icon">
-          {" "}
-          <Icons.ButtonAlertIcon
-            size="medium"
-            data-for="errorTooltip"
-            data-tip={item.error}
+        {item.fileId ? (
+          <IconButton
+            iconName="CatalogSharedIcon"
+            className="download_panel-icon"
+            color="#A3A9AE"
           />
-          <Tooltip
-            id="errorTooltip"
-            getContent={(dataTip) => <Text fontSize="13px">{dataTip}</Text>}
-            effect="float"
-            place="left"
-            maxWidth={320}
+        ) : item.error ? (
+          <div className="download_panel-icon">
+            {" "}
+            <Icons.LoadErrorIcon
+              size="medium"
+              data-for="errorTooltip"
+              data-tip={item.error}
+            />
+            <Tooltip
+              id="errorTooltip"
+              getContent={(dataTip) => <Text fontSize="13px">{dataTip}</Text>}
+              effect="float"
+              place="left"
+              maxWidth={320}
+            />
+          </div>
+        ) : (
+          <IconButton
+            iconName="ButtonCancelIcon"
+            className="download_panel-icon"
+            color="#A3A9AE"
           />
-        </div>
-      ) : (
-        <IconButton
-          iconName="ButtonCancelIcon"
-          className="download_panel-icon"
-          color="#A3A9AE"
-        />
-      )}
+        )}
+      </>
     </StyledFileRow>
   );
 };
