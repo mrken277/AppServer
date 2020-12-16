@@ -16,6 +16,7 @@ import {
   getUploadDataFiles,
   getArchiveFormats,
   getImageFormats,
+  getEditedFormats,
 } from "../../../store/files/selectors";
 import {
   StyledAsidePanel,
@@ -91,6 +92,7 @@ class DownloadPanelComponent extends React.Component {
       uploadDataFiles,
       archiveFormats,
       imageFormats,
+      editedFormats,
     } = this.props;
 
     const { uploadData, uploaded } = this.state;
@@ -142,6 +144,7 @@ class DownloadPanelComponent extends React.Component {
                       index={index}
                       archiveFormats={archiveFormats}
                       imageFormats={imageFormats}
+                      editedFormats={editedFormats}
                     />
                   ))
                 : uploadData.map((item, index) => (
@@ -151,6 +154,7 @@ class DownloadPanelComponent extends React.Component {
                       index={index}
                       archiveFormats={archiveFormats}
                       imageFormats={imageFormats}
+                      editedFormats={editedFormats}
                     />
                   ))}
             </StyledBody>
@@ -176,6 +180,7 @@ const mapStateToProps = (state) => {
     uploadDataFiles: getUploadDataFiles(state),
     archiveFormats: getArchiveFormats(state),
     imageFormats: getImageFormats(state),
+    editedFormats: getEditedFormats(state),
   };
 };
 

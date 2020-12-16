@@ -1,6 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { IconButton, Row, Text, Icons, Tooltip } from "asc-web-components";
+import {
+  IconButton,
+  Row,
+  Text,
+  Icons,
+  Tooltip,
+  Link,
+} from "asc-web-components";
 
 const StyledFileRow = styled(Row)`
   margin: 0 16px;
@@ -61,7 +68,7 @@ const checkExt = (ext) => {
 };
 
 const FileRow = (props) => {
-  const { item, index, archiveFormats, imageFormats, uploadDone } = props;
+  const { item, index, archiveFormats, imageFormats, editedFormats } = props;
   const name = item.file.name.split(".");
   let ext = name.length > 1 ? name.pop() : "";
   let originalExt = null;
@@ -90,7 +97,17 @@ const FileRow = (props) => {
       element={fileIcon}
     >
       <>
-        <Text fontWeight="600">{name}</Text>
+        {item.fileId && editedFormats.includes(`.${ext}`) ? (
+          <Link
+            fontWeight="600"
+            href={`./doceditor?fileId=${item.fileId}`}
+            target="_blank"
+          >
+            {name}
+          </Link>
+        ) : (
+          <Text fontWeight="600">{name}</Text>
+        )}
         <Text fontWeight="600" color="#A3A9AE">
           .{originalExt ? originalExt : ext}
         </Text>
