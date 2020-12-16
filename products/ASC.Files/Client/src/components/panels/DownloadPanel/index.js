@@ -41,6 +41,10 @@ class DownloadPanelComponent extends React.Component {
 
     changeLanguage(i18n);
 
+    this.state = {
+      uploadData: [],
+      uploaded: false,
+    };
     this.ref = React.createRef();
     this.scrollRef = React.createRef();
   }
@@ -55,11 +59,31 @@ class DownloadPanelComponent extends React.Component {
     document.removeEventListener("keyup", this.onKeyPress);
   }
 
+  componentDidUpdate(prevProps) {
+    const { uploadDataFiles } = this.props;
+
+    if (prevProps.uploadDataFiles !== uploadDataFiles) {
+      this.setState({
+        uploadData: prevProps.uploadDataFiles,
+        uploaded: true,
+      });
+    }
+  }
+
   onKeyPress = (event) => {
     if (event.key === "Esc" || event.key === "Escape") {
       this.onClose();
     }
   };
+
+  clearDownloadPanel = () => {
+    this.setState({
+      uploadData: [],
+      uploaded: false,
+    });
+    this.onClose();
+  };
+
   render() {
     const {
       t,
@@ -68,6 +92,8 @@ class DownloadPanelComponent extends React.Component {
       archiveFormats,
       imageFormats,
     } = this.props;
+
+    const { uploadData, uploaded } = this.state;
 
     const visible = downloadPanelVisible;
     const zIndex = 310;
@@ -82,11 +108,21 @@ class DownloadPanelComponent extends React.Component {
               </Heading>
               <div className="download_panel-icons-container">
                 <div className="download_panel-remove-icon">
-                  <IconButton
-                    size="20"
-                    iconName="ButtonCancelIcon"
-                    color="#A3A9AE"
-                  />
+                  {uploaded ? (
+                    <IconButton
+                      size="20"
+                      iconName="ClearActiveIcon"
+                      color="#A3A9AE"
+                      isClickable={true}
+                      onClick={this.clearDownloadPanel}
+                    />
+                  ) : (
+                    <IconButton
+                      size="20"
+                      iconName="ButtonCancelIcon"
+                      color="#A3A9AE"
+                    />
+                  )}
                 </div>
                 <div className="download_panel-vertical-dots-icon">
                   <IconButton
@@ -98,15 +134,25 @@ class DownloadPanelComponent extends React.Component {
               </div>
             </StyledHeaderContent>
             <StyledBody stype="mediumBlack" style={DownloadBodyStyle}>
-              {uploadDataFiles.map((item, index) => (
-                <FileRow
-                  item={item}
-                  key={index}
-                  index={index}
-                  archiveFormats={archiveFormats}
-                  imageFormats={imageFormats}
-                />
-              ))}
+              {uploadDataFiles.length > 0
+                ? uploadDataFiles.map((item, index) => (
+                    <FileRow
+                      item={item}
+                      key={index}
+                      index={index}
+                      archiveFormats={archiveFormats}
+                      imageFormats={imageFormats}
+                    />
+                  ))
+                : uploadData.map((item, index) => (
+                    <FileRow
+                      item={item}
+                      key={index}
+                      index={index}
+                      archiveFormats={archiveFormats}
+                      imageFormats={imageFormats}
+                    />
+                  ))}
             </StyledBody>
           </StyledContent>
         </Aside>

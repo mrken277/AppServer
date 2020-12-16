@@ -61,7 +61,7 @@ const checkExt = (ext) => {
 };
 
 const FileRow = (props) => {
-  const { item, index, archiveFormats, imageFormats } = props;
+  const { item, index, archiveFormats, imageFormats, uploadDone } = props;
   const name = item.file.name.split(".");
   let ext = name.length > 1 ? name.pop() : "";
   let originalExt = null;
