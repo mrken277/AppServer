@@ -68,7 +68,7 @@ const initialState = {
   },
   convertDialogVisible: false,
   sharingPanelVisible: false,
-  downloadPanelVisible: true,
+  downloadPanelVisible: false,
   updateTree: false,
   newRowItems: [],
   selectedTreeNode: [],
