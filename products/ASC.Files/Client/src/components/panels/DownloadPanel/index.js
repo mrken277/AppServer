@@ -92,7 +92,7 @@ class DownloadPanelComponent extends React.Component {
             </StyledHeaderContent>
             <StyledBody stype="mediumBlack" style={DownloadBodyStyle}>
               {uploadDataFiles.map((item, index) => (
-                <FileRow item={item} index={index} />
+                <FileRow item={item} key={index} index={index} />
               ))}
             </StyledBody>
           </StyledContent>
