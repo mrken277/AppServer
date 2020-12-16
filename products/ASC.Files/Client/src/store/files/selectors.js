@@ -1186,3 +1186,7 @@ export const getSharePanelVisible = (state) => {
 export const getDownloadPanelVisible = (state) => {
   return state.files.downloadPanelVisible;
 };
+
+export const getUploadDataFiles = (state) => {
+  return state.files.uploadData.files;
+};
