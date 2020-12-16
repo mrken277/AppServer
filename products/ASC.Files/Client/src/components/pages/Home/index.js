@@ -24,6 +24,7 @@ import {
   setFirstLoad,
   startUpload,
   setSelections,
+  setDownloadPanelVisible,
 } from "../../../store/files/actions";
 import {
   getConvertDialogVisible,
@@ -159,6 +160,10 @@ class PureHome extends React.Component {
     startUpload(files, folderId, t);
   };
 
+  showDownloadPanel = () => {
+    this.props.setDownloadPanelVisible(!this.props.downloadPanelVisible);
+  };
+
   componentDidUpdate(prevProps) {
     if (this.props.isLoading !== prevProps.isLoading) {
       if (this.props.isLoading) {
@@ -215,6 +220,7 @@ class PureHome extends React.Component {
           }
           isLoaded={!firstLoad}
           downloadPanelVisible={downloadPanelVisible}
+          onOpenDownloadPanel={this.showDownloadPanel}
         >
           <PageLayout.ArticleHeader>
             <ArticleHeaderContent />
@@ -298,6 +304,8 @@ const mapDispatchToProps = (dispatch) => {
     setFirstLoad: (firstLoad) => dispatch(setFirstLoad(firstLoad)),
     fetchFiles: (folderId, filter) => dispatch(fetchFiles(folderId, filter)),
     setSelections: (items) => dispatch(setSelections(items)),
+    setDownloadPanelVisible: (downloadPanelVisible) =>
+      dispatch(setDownloadPanelVisible(downloadPanelVisible)),
   };
 };
 
