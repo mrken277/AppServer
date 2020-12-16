@@ -14,11 +14,12 @@ import { setDownloadPanelVisible } from "../../../store/files/actions";
 import {
   getDownloadPanelVisible,
   getUploadDataFiles,
+  getArchiveFormats,
+  getImageFormats,
 } from "../../../store/files/selectors";
 import {
   StyledAsidePanel,
   StyledContent,
-  StyledFooter,
   StyledHeaderContent,
   StyledBody,
 } from "../StyledPanels";
@@ -60,7 +61,13 @@ class DownloadPanelComponent extends React.Component {
     }
   };
   render() {
-    const { t, downloadPanelVisible, uploadDataFiles } = this.props;
+    const {
+      t,
+      downloadPanelVisible,
+      uploadDataFiles,
+      archiveFormats,
+      imageFormats,
+    } = this.props;
 
     const visible = downloadPanelVisible;
     const zIndex = 310;
@@ -92,7 +99,13 @@ class DownloadPanelComponent extends React.Component {
             </StyledHeaderContent>
             <StyledBody stype="mediumBlack" style={DownloadBodyStyle}>
               {uploadDataFiles.map((item, index) => (
-                <FileRow item={item} key={index} index={index} />
+                <FileRow
+                  item={item}
+                  key={index}
+                  index={index}
+                  archiveFormats={archiveFormats}
+                  imageFormats={imageFormats}
+                />
               ))}
             </StyledBody>
           </StyledContent>
@@ -115,6 +128,8 @@ const mapStateToProps = (state) => {
     isMyId: getCurrentUserId(state),
     downloadPanelVisible: getDownloadPanelVisible(state),
     uploadDataFiles: getUploadDataFiles(state),
+    archiveFormats: getArchiveFormats(state),
+    imageFormats: getImageFormats(state),
   };
 };
 

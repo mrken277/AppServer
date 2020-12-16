@@ -23,18 +23,23 @@ const StyledFileRow = styled(Row)`
 `;
 
 const FileRow = (props) => {
-  const { item, index } = props;
+  const { item, index, archiveFormats, imageFormats } = props;
   const name = item.file.name.split(".");
   let ext = name.length > 1 ? name.pop() : "";
   let originalExt = null;
 
-  if (ext === "rar" || ext === "zip") {
+  if (archiveFormats.includes(`.${ext}`)) {
     originalExt = ext;
     ext = "file_archive";
   }
+
+  if (imageFormats.includes(`.${ext}`)) {
+    originalExt = ext;
+    ext = "image";
+  }
+
   const fileIcon = <img src={`images/icons/24/${ext}.svg`} />;
 
-  if (item.error) console.error(item.error);
   return (
     <StyledFileRow
       className="download-row"
