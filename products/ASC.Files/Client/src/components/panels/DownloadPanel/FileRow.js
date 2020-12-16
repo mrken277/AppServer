@@ -22,6 +22,44 @@ const StyledFileRow = styled(Row)`
   }
 `;
 
+const checkExt = (ext) => {
+  const extArray = [
+    "avi",
+    "csv",
+    "djvu",
+    "doc",
+    "docx",
+    "dvd",
+    "ebook",
+    "file_archive",
+    "flv",
+    "html",
+    "iaf",
+    "image",
+    "m2ts",
+    "mkv",
+    "mov",
+    "mp4",
+    "mpg",
+    "odp",
+    "ods",
+    "odt",
+    "pdf",
+    "pps",
+    "ppsx",
+    "ppt",
+    "pptx",
+    "rtf",
+    "sound",
+    "svg",
+    "txt",
+    "xls",
+    "xlsx",
+    "xps",
+  ];
+  return extArray.includes(ext);
+};
+
 const FileRow = (props) => {
   const { item, index, archiveFormats, imageFormats } = props;
   const name = item.file.name.split(".");
@@ -38,7 +76,11 @@ const FileRow = (props) => {
     ext = "image";
   }
 
-  const fileIcon = <img src={`images/icons/24/${ext}.svg`} />;
+  const fileIcon = checkExt(ext) ? (
+    <img src={`images/icons/24/${ext}.svg`} />
+  ) : (
+    <img src="images/icons/24/file.svg" />
+  );
 
   return (
     <StyledFileRow
