@@ -11,7 +11,10 @@ import { withRouter } from "react-router";
 import { withTranslation } from "react-i18next";
 import { utils as commonUtils, store } from "asc-web-common";
 import { setDownloadPanelVisible } from "../../../store/files/actions";
-import { getDownloadPanelVisible } from "../../../store/files/selectors";
+import {
+  getDownloadPanelVisible,
+  getUploadDataFiles,
+} from "../../../store/files/selectors";
 import {
   StyledAsidePanel,
   StyledContent,
@@ -19,6 +22,7 @@ import {
   StyledHeaderContent,
   StyledBody,
 } from "../StyledPanels";
+import FileRow from "./FileRow";
 import { createI18N } from "../../../helpers/i18n";
 const i18n = createI18N({
   page: "DownloadPanel",
@@ -42,7 +46,6 @@ class DownloadPanelComponent extends React.Component {
 
   onClose = () => {
     this.props.setDownloadPanelVisible(!this.props.downloadPanelVisible);
-    console.log("Download panel close");
   };
   componentDidMount() {
     document.addEventListener("keyup", this.onKeyPress);
@@ -57,8 +60,7 @@ class DownloadPanelComponent extends React.Component {
     }
   };
   render() {
-    console.log("Download panel render");
-    const { t, downloadPanelVisible } = this.props;
+    const { t, downloadPanelVisible, uploadDataFiles } = this.props;
 
     const visible = downloadPanelVisible;
     const zIndex = 310;
@@ -89,7 +91,9 @@ class DownloadPanelComponent extends React.Component {
               </div>
             </StyledHeaderContent>
             <StyledBody stype="mediumBlack" style={DownloadBodyStyle}>
-              Body
+              {uploadDataFiles.map((item, index) => (
+                <FileRow item={item} index={index} />
+              ))}
             </StyledBody>
             <StyledFooter>Footer</StyledFooter>
           </StyledContent>
@@ -111,9 +115,10 @@ const mapStateToProps = (state) => {
   return {
     isMyId: getCurrentUserId(state),
     downloadPanelVisible: getDownloadPanelVisible(state),
+    uploadDataFiles: getUploadDataFiles(state),
   };
 };
 
-export default connect(mapStateToProps, { setDownloadPanelVisible })(
-  withRouter(DownloadPanel)
-);
+export default connect(mapStateToProps, {
+  setDownloadPanelVisible,
+})(withRouter(DownloadPanel));
