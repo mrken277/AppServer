@@ -95,7 +95,6 @@ class DownloadPanelComponent extends React.Component {
                 <FileRow item={item} index={index} />
               ))}
             </StyledBody>
-            <StyledFooter>Footer</StyledFooter>
           </StyledContent>
         </Aside>
       </StyledAsidePanel>
